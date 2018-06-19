@@ -1,0 +1,16 @@
+POST http://localhost:8080/user/sign-up/?username=mwatkinson&password=mypassword -> User Created
+GET http://localhost:8080/user/authenticate/?username=mwatkinson&password=mypassword -> 114caa15-bb33-43fd-bd70-787036720fd1
+PUT http://localhost:8080/calendar/?name=Marks%20Calendar&username=mwatkinson HEADER Authorization : 114caa15-bb33-43fd-bd70-787036720fd1 -> Calendar Created
+PUT http://localhost:8080/calendar/event/?name=Marks%20Calendar&username=mwatkinson&title=My%20Event&date=2018-06-19%2008:00:00&location=Atlanta,%20GA&attendees=Mark,%20John&reminder=2018-06-19%2007:00:00 HEADER Authorization : 114caa15-bb33-43fd-bd70-787036720fd1 -> Event Created
+GET http://localhost:8080/calendar/ -> Returns a lists of all calendars
+GET http://localhost:8080/calendar/?name=Marks%20Calendar&username=mwatkinson -> Return specified calendar
+GET http://localhost:8080/calendar/event/?name=Marks%20Calendar&username=mwatkinson -> Return event list for specified calendar
+GET http://localhost:8080/calendar/event/?name=Marks%20Calendar&username=mwatkinson&title=My%20Event -> Return specfied event
+GET http://localhost:8080/calendar/event/day/?name=Marks%20Calendar&username=mwatkinson&date=2018-06-19%2001:00:00 -> Return list of events from specified day
+GET http://localhost:8080/calendar/event/week/?name=Marks%20Calendar&username=mwatkinson&date=2018-06-18%2001:00:00 -> Return list of events from specified week
+GET http://localhost:8080/calendar/event/month/?name=Marks%20Calendar&username=mwatkinson&date=2018-06-01%2001:00:00 -> Return list of events from specified month
+POST http://localhost:8080/calendar/event/?name=Marks%20Calendar&username=mwatkinson&title=My%20Event&date=2018-06-20%2008:00:00&location=Atlanta,%20GA&attendees=Mark,%20John&reminder=2018-06-20%2007:00:00 HEADER Authorization : 114caa15-bb33-43fd-bd70-787036720fd1 -> Event Updated
+DELETE http://localhost:8080/calendar/event/?name=Marks%20Calendar&username=mwatkinson&title=My%20Event HEADER Authorization : 114caa15-bb33-43fd-bd70-787036720fd1 -> Event Deleted
+DELETE http://localhost:8080/calendar/?name=Marks%20Calendar&username=mwatkinson -> Calendar Deleted
+
+Create an event with a future reminder date, and wait until the timestamp while monitoring the console to see the reminder message.
